@@ -45,7 +45,7 @@ public class Enemy_4 : Enemy
         p0 = p1;
 
         float widMinRad = bndCheck.camWidth - bndCheck.radius;
-        float hgtMinRad = bndCheck.camHeight = bndCheck.radius;
+        float hgtMinRad = bndCheck.camHeight - bndCheck.radius;
         p1.x = Random.Range(-widMinRad, widMinRad);
         p1.y = Random.Range(-hgtMinRad, hgtMinRad);
 
