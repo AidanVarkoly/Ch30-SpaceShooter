@@ -148,7 +148,7 @@ MonoBehaviour:
   driftMinMax: {x: 0.25, y: 2}
   lifeTime: 6
   fadeTime: 4
-  type: 0
+  type: 2
   cube: {fileID: 0}
   letter: {fileID: 0}
   rotPerSecond: {x: 0, y: 0, z: 0}
@@ -211,7 +211,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: dcb0781a0112e0346ae0ed88a931d697, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
