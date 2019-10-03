@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 202633333}
   - component: {fileID: 202633332}
   - component: {fileID: 202633331}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -216,7 +216,7 @@ GameObject:
   - component: {fileID: 294853839}
   - component: {fileID: 294853838}
   - component: {fileID: 294853837}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 294853835}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -321,7 +321,7 @@ GameObject:
   - component: {fileID: 382985812}
   - component: {fileID: 382985811}
   - component: {fileID: 382985810}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -409,7 +409,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1137751729}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cockpit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -512,9 +512,9 @@ GameObject:
   - component: {fileID: 1863167072}
   - component: {fileID: 1863167071}
   - component: {fileID: 1863167074}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: _Hero
-  m_TagString: Untagged
+  m_TagString: Hero
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -550,7 +550,11 @@ MonoBehaviour:
   speed: 30
   rollMult: -45
   pitchMult: 30
-  shieldLevel: 1
+  gameRestartDelay: 2
+  projectilePrefab: {fileID: 4723419235041625212, guid: 87ef94ad31659e54ebafb5554b935b56,
+    type: 3}
+  projectileSpeed: 40
+  _shieldLevel: 1
 --- !u!4 &1863167073
 Transform:
   m_ObjectHideFlags: 0
@@ -686,9 +690,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabEnemies:
-  - {fileID: 8892403816846981592, guid: f8ef2e89def6e3a45ab52742281c46e2, type: 3}
+  - {fileID: 8234562649686815864, guid: f5001555785589a4a839f93ab7767dff, type: 3}
   enemySpawnPerSecond: 0.5
   enemyDefaultPadding: 1.5
+  weaponDefinitions:
+  - type: 1
+    letter: B
+    color: {r: 1, g: 1, b: 1, a: 1}
+    projectilePreFab: {fileID: 4723419235041625212, guid: 87ef94ad31659e54ebafb5554b935b56,
+      type: 3}
+    projectileColor: {r: 1, g: 1, b: 1, a: 1}
+    damageOnHit: 1
+    continuousDamage: 0
+    delayBetweenShots: 0.2
+    velocity: 50
+  - type: 2
+    letter: S
+    color: {r: 0, g: 0.75762033, b: 1, a: 1}
+    projectilePreFab: {fileID: 4723419235041625212, guid: 87ef94ad31659e54ebafb5554b935b56,
+      type: 3}
+    projectileColor: {r: 0, g: 0.7568628, b: 1, a: 1}
+    damageOnHit: 1
+    continuousDamage: 0
+    delayBetweenShots: 0.4
+    velocity: 50
+  - type: 6
+    letter: O
+    color: {r: 0.06197321, g: 0.6415094, b: 0, a: 1}
+    projectilePreFab: {fileID: 0}
+    projectileColor: {r: 1, g: 1, b: 1, a: 1}
+    damageOnHit: 0
+    continuousDamage: 0
+    delayBetweenShots: 0
+    velocity: 0
 --- !u!114 &1992924326
 MonoBehaviour:
   m_ObjectHideFlags: 0

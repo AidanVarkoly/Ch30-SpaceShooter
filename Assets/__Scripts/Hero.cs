@@ -10,9 +10,19 @@ public class Hero : MonoBehaviour
     public float speed = 30;
     public float rollMult = -45;
     public float pitchMult = 30;
+    public float gameRestartDelay = 2f;
+    public GameObject projectilePrefab;
+    public float projectileSpeed = 40;
 
     [Header("Set Dynamically")]
-    public float shieldLevel = 1;
+    [SerializeField]
+    public float _shieldLevel = 1;
+
+    private GameObject lastTriggerGo = null;
+
+    public delegate void WeaponFireDelegate();
+
+    public WeaponFireDelegate fireDelegate;
 
     void Awake()
     {
@@ -20,10 +30,8 @@ public class Hero : MonoBehaviour
         {
             S = this; // Set the Singleton
         }
-        else
-        {
-            Debug.LogError("Hero.Awake() - Attempted to assign second Hero.S!");
-        }
+
+        fireDelegate += TempFire;
     }
     
     void Update()
@@ -40,5 +48,63 @@ public class Hero : MonoBehaviour
 
         // Rotate the ship to make it feel more dynamic
         transform.rotation = Quaternion.Euler(yAxis * pitchMult, xAxis * rollMult, 0);
+
+        if (Input.GetAxis("Jump") == 1 && fireDelegate != null)
+        {
+            fireDelegate();
+        }
+
+    }
+    void TempFire()
+    {
+        GameObject projGO = Instantiate<GameObject>(projectilePrefab);
+        projGO.transform.position = transform.position;
+        Rigidbody rigidB = projGO.GetComponent<Rigidbody>();
+        // rigidB.velocity = Vector3.up * projectileSpeed;
+
+        Projectile proj = projGO.GetComponent<Projectile>();
+        proj.type = WeaponType.blaster;
+        float tSpeed = Main.GetWeaponDefinition(proj.type).velocity;
+        rigidB.velocity = Vector3.up * tSpeed;
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        Transform rootT = other.gameObject.transform.root;
+        GameObject go = rootT.gameObject;
+
+        if(go == lastTriggerGo)
+        {
+            return;
+        }
+        lastTriggerGo = go;
+
+        if(go.tag == "Enemy")
+        {
+            shieldLevel--;
+            Destroy(go);
+        }
+        else
+        {
+            print("Triggered by non-Enemy: " + go.name);
+        }
+    }
+    public float shieldLevel
+    {
+        get
+        {
+            return (_shieldLevel);
+        } 
+        set
+        {
+            _shieldLevel = Mathf.Min(value, 4);
+
+            if (value < 0)
+            {
+                Destroy(this.gameObject);
+
+                // Tell Main.S to restart the game after a delay
+                Main.S.DelayedRestart(gameRestartDelay);
+            }
+        }
     }
 }

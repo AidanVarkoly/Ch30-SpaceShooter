@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6489304043867332500}
   - component: {fileID: 3725014483762521464}
   - component: {fileID: 8134950827073113178}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,9 +101,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8004589147312659924}
   - component: {fileID: 5033028589990356164}
-  m_Layer: 0
+  - component: {fileID: 6309524996180602744}
+  - component: {fileID: 3737659066849208048}
+  m_Layer: 9
   m_Name: Enemy_1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,6 +142,46 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!114 &6309524996180602744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8785614604634269952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0e212b0d782db144bb90c6c57675fd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  fireRate: 0.3
+  health: 10
+  score: 100
+  waveFrequancy: 2
+  waveWidth: 4
+  waveRotY: 45
+--- !u!114 &3737659066849208048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8785614604634269952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15de8bb5e1367346b8311ccc7ec1a5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keepOnScreen: 0
+  radius: -2.5
+  isOnScreen: 1
+  camWidth: 0
+  camHeight: 0
+  offRight: 0
+  offLeft: 0
+  offUp: 0
+  offDown: 0
 --- !u!1 &9048002870041161463
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +194,7 @@ GameObject:
   - component: {fileID: 5482215046463439338}
   - component: {fileID: 2907958233723171234}
   - component: {fileID: 3399360141722791447}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cockpit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
