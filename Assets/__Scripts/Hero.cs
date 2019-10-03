@@ -30,8 +30,6 @@ public class Hero : MonoBehaviour
         {
             S = this; // Set the Singleton
         }
-
-        fireDelegate += TempFire;
     }
     
     void Update()
@@ -53,20 +51,8 @@ public class Hero : MonoBehaviour
         {
             fireDelegate();
         }
-
     }
-    void TempFire()
-    {
-        GameObject projGO = Instantiate<GameObject>(projectilePrefab);
-        projGO.transform.position = transform.position;
-        Rigidbody rigidB = projGO.GetComponent<Rigidbody>();
-        // rigidB.velocity = Vector3.up * projectileSpeed;
 
-        Projectile proj = projGO.GetComponent<Projectile>();
-        proj.type = WeaponType.blaster;
-        float tSpeed = Main.GetWeaponDefinition(proj.type).velocity;
-        rigidB.velocity = Vector3.up * tSpeed;
-    }
     void OnTriggerEnter(Collider other)
     {
         Transform rootT = other.gameObject.transform.root;
@@ -83,10 +69,23 @@ public class Hero : MonoBehaviour
             shieldLevel--;
             Destroy(go);
         }
+        else if (go.tag == "PowerUp")
+        {
+            AbsorbPowerUp(go);
+        }
         else
         {
             print("Triggered by non-Enemy: " + go.name);
         }
+    }
+    public void AbsorbPowerUp(GameObject go)
+    {
+        PowerUp pu = go.GetComponent<PowerUp>();
+        switch (pu.type)
+        {
+
+        }
+        pu.AbsorbedBy(this.gameObject);
     }
     public float shieldLevel
     {
